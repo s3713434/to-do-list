@@ -1,0 +1,39 @@
+@import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100..700;1,100..700&display=swap');
+$regular-gap:30px;
+$input-height:40px;
+$shadow:rgb(193, 191, 191) 1px 0 5px;
+
+header {
+  text-shadow: $shadow;
+  h1 {
+    font-style: italic;
+  }
+
+  h3 {
+    font-family: "Josefin Sans", sans-serif;
+    font-weight: normal;
+    font-style: italic;
+    text-decoration: underline;
+    margin-bottom: $regular-gap;
+  }
+
+  .user-input{
+    display: flex;
+    margin-bottom: 20px;
+    input[type='text']{
+      height: $input-height;
+      width: 350px;
+      border-radius: 5px 0 0 5px;
+      padding:10px;
+      outline: none;
+      box-shadow: $shadow;
+    }
+    .btn{
+      height: $input-height;
+      width: 50px;
+      cursor: pointer;
+      border-radius: 0 5px 5px 0;
+      box-shadow: $shadow;
+    }
+  }
+}

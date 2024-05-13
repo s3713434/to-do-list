@@ -1,0 +1,12 @@
+.list-container {
+  background-color: #f7f7f7;
+  min-width: 650px;
+  display: flex;
+  justify-content: center;
+  color: black;
+  border-radius: 5px;
+  padding: 10px;
+}
+.list-container .ul {
+  list-style: none;
+}/*# sourceMappingURL=style.css.map */
