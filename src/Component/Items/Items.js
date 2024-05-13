@@ -2,7 +2,12 @@ import './style.css'
 import { useState } from 'react'
 
 // rfc
-export default function Items({ todos }) {
+export default function Items({
+  todos,
+  handleDoneToggle,
+  deleteTodo,
+  updateTodos,
+}) {
   const [isEditing, setIsEditing] = useState(false)
   const [updatedName, setUpdatedName] = useState(todos.name)
   const handleToggleEdit = () => {
@@ -20,6 +25,7 @@ export default function Items({ todos }) {
 
   const handleDeleteTodo = () => {
     console.log('Deleted todo ID:', todos.id)
+    deleteTodo(todos.id)
   }
   return (
     <li>
@@ -38,7 +44,11 @@ export default function Items({ todos }) {
       ) : (
         <div className="normal-container">
           <label>
-            <input type="checkbox" defaultChecked={todos.done} />
+            <input
+              type="checkbox"
+              defaultChecked={todos.done}
+              onChange={() => handleDoneToggle(todos.id)}
+            />
             <span>{todos.name}</span>
           </label>
           <div className="btn-container">
@@ -53,14 +63,4 @@ export default function Items({ todos }) {
       )}
     </li>
   )
-  // <li>
-  //   <label>
-  //     <input type="checkbox" defaultChecked={todos.done}></input>
-  //     <span>{todos.name}</span>
-  //   </label>
-  //   <div className="btn-container">
-  //     <button className="btn">Edit</button>
-  //     <button className="btn">Delete</button>
-  //   </div>
-  // </li>
 }

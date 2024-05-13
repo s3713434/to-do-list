@@ -27,6 +27,7 @@ export default function Header({ addTodos }) {
           onChange={handleInputChange}
           type="text"
           placeholder="Please enter a Task..."
+          value={name}
         />
         <button className="btn" onClick={handleAddTodo}>
           <AddIcon />

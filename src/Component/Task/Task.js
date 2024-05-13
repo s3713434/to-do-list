@@ -16,14 +16,32 @@ export default function Task() {
     setIdCounter(idCounter + 1)
   }
 
-  const updateTodos = (newTodos) => {
-    setTodos(newTodos)
+  const updateTodos = (id, newTodo) => {}
+
+  const deleteTodo = (id) => {
+    const deleteTodo = todos.filter((todo) => todo.id !== id)
+    setTodos(deleteTodo)
+  }
+
+  const handleDoneToggle = (id) => {
+    const updatedTodos = todos.map((todo) => {
+      if (todo.id === id) {
+        return { ...todo, done: !todo.done }
+      }
+      return todo
+    })
+    updateTodos(updatedTodos)
   }
 
   return (
     <div className="container">
       <Header addTodos={addTodos} todos={todos} />
-      <List todos={todos} />
+      <List
+        todos={todos}
+        handleDoneToggle={handleDoneToggle}
+        deleteTodo={deleteTodo}
+        updateTodos={updateTodos}
+      />
     </div>
   )
 }
