@@ -4,11 +4,23 @@ import { useState } from 'react'
 import './style.css'
 
 export default function Header({ addTodos }) {
+  // Init state
   const [name, setName] = useState('')
   const [done, setDone] = useState(false)
+
+  // Get the input
   const handleInputChange = (e) => {
     setName(e.target.value)
   }
+
+  // Allow users to use enter key
+  const handleKeyDown = (e) => {
+    if (e.key === 'Enter') {
+      handleAddTodo()
+    }
+  }
+
+  //Add Task
   const handleAddTodo = () => {
     if (name.trim() !== '') {
       const newTodo = { name: name, done: done }
@@ -16,6 +28,7 @@ export default function Header({ addTodos }) {
     }
     setName('')
   }
+
   return (
     <header>
       <div className="header-title">
@@ -25,6 +38,7 @@ export default function Header({ addTodos }) {
       <div className="user-input">
         <input
           onChange={handleInputChange}
+          onKeyDown={handleKeyDown}
           type="text"
           placeholder="Please enter a Task..."
           value={name}

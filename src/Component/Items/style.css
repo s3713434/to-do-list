@@ -62,6 +62,10 @@ li .edit-container .btn-save {
   transition: linear 0.5s;
   margin-right: 6px;
 }
+li .completed {
+  text-decoration: line-through;
+  color: gray;
+}
 li label {
   display: flex;
   align-items: center;

@@ -63,6 +63,11 @@ li{
       margin-right: 6px;
     }
   }
+
+  .completed{
+    text-decoration: line-through;
+    color:gray;
+  }
   
   label{
     display: flex;

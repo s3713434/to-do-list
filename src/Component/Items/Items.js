@@ -10,21 +10,38 @@ export default function Items({
 }) {
   const [isEditing, setIsEditing] = useState(false)
   const [updatedName, setUpdatedName] = useState(todos.name)
+
+  // Allow user to use enter
+  const handleKeyDown = (e) => {
+    if (e.key == 'Enter') {
+      handleEditTodo()
+    }
+  }
+
+  // Trigger of Edit
   const handleToggleEdit = () => {
     setIsEditing(!isEditing)
     setUpdatedName(todos.name)
   }
+
+  // To get the input
   const handleInputChange = (e) => {
     setUpdatedName(e.target.value)
   }
 
+  // For edit task
   const handleEditTodo = () => {
-    console.log('Updated name:', updatedName)
+    // console.log('Updated name:', updatedName)
+    if (updatedName.trim() !== '') {
+      const updatedTodo = { ...todos, name: updatedName }
+      updateTodos(updatedTodo)
+    }
     setIsEditing(false)
   }
 
+  //Delete task
   const handleDeleteTodo = () => {
-    console.log('Deleted todo ID:', todos.id)
+    // console.log('Deleted todo ID:', todos.id)
     deleteTodo(todos.id)
   }
   return (
@@ -36,6 +53,7 @@ export default function Items({
             type="text"
             value={updatedName}
             onChange={handleInputChange}
+            onKeyDown={handleKeyDown}
           />
           <button className="btn-save" onClick={handleEditTodo}>
             Save
@@ -49,7 +67,7 @@ export default function Items({
               defaultChecked={todos.done}
               onChange={() => handleDoneToggle(todos.id)}
             />
-            <span>{todos.name}</span>
+            <span className={todos.done ? 'completed' : ''}>{todos.name}</span>
           </label>
           <div className="btn-container">
             <button className="btn" onClick={handleToggleEdit}>

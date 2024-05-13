@@ -16,7 +16,15 @@ export default function Task() {
     setIdCounter(idCounter + 1)
   }
 
-  const updateTodos = (id, newTodo) => {}
+  const updateTodos = (updatedTodo) => {
+    const updatedTodos = todos.map((todo) => {
+      if (todo.id === updatedTodo.id) {
+        return updatedTodo
+      }
+      return todo
+    })
+    setTodos(updatedTodos)
+  }
 
   const deleteTodo = (id) => {
     const deleteTodo = todos.filter((todo) => todo.id !== id)
@@ -30,7 +38,7 @@ export default function Task() {
       }
       return todo
     })
-    updateTodos(updatedTodos)
+    setTodos(updatedTodos)
   }
 
   return (
