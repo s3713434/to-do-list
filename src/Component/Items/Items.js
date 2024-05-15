@@ -18,10 +18,9 @@ export default function Items({
     }
   }
 
-  // Trigger of Edit
+  // Trigger of Edit HTML
   const handleToggleEdit = () => {
     setIsEditing(!isEditing)
-    setUpdatedName(todos.name)
   }
 
   // To get the input
