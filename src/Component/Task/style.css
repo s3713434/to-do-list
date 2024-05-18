@@ -16,9 +16,21 @@ body {
   line-height: 1.5;
   color: #fff;
 }
-body .container {
+body .task-container {
   display: flex;
   align-items: center;
   flex-wrap: wrap;
   flex-direction: column;
+}
+body .task-container .list-container {
+  background-color: #f7f7f7;
+  min-width: 650px;
+  display: flex;
+  justify-content: center;
+  color: black;
+  border-radius: 5px;
+  padding: 10px;
+}
+body .task-container .list-container ul {
+  list-style: none;
 }/*# sourceMappingURL=style.css.map */

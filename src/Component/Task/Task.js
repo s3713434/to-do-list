@@ -47,15 +47,22 @@ export default function Task() {
   }
 
   return (
-    <div className="container">
-      <Header addTodos={addTodos} todos={todos} />
+    <div className="task-container">
+      <Header addTodos={addTodos} />
       <FilterButtons todos={todos} />
-      <List
-        todos={todos}
-        handleDoneToggle={handleDoneToggle}
-        deleteTodo={deleteTodo}
-        updateTodos={updateTodos}
-      />
+      <div className="list-container">
+        <ul>
+          {todos.map((todo) => (
+            <List
+              key={todo.id}
+              todos={todo}
+              handleDoneToggle={handleDoneToggle}
+              deleteTodo={deleteTodo}
+              updateTodos={updateTodos}
+            />
+          ))}
+        </ul>
+      </div>
     </div>
   )
 }

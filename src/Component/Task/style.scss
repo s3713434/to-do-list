@@ -18,10 +18,22 @@ body {
   justify-content: center;
   line-height: 1.5;
   color: #fff;
-  .container {
+  .task-container {
     display: flex;
     align-items: center;
     flex-wrap: wrap;
     flex-direction: column;
+    .list-container{
+      background-color: #f7f7f7;
+      min-width: 650px;
+      display: flex;
+      justify-content: center;
+      color: black;
+      border-radius: 5px;
+      padding:10px;
+      ul{
+        list-style: none;
+      }
+    }
   }
 }

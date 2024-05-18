@@ -1,5 +1,5 @@
 import React from 'react'
-import Items from '../Items/Items'
+import { useState } from 'react'
 import './style.css'
 
 export default function List({
@@ -8,19 +8,76 @@ export default function List({
   deleteTodo,
   updateTodos,
 }) {
+  const [isEditing, setIsEditing] = useState(false)
+  const [updatedName, setUpdatedName] = useState(todos.name)
+
+  // Allow user to use enter
+  const handleKeyDown = (e) => {
+    if (e.key === 'Enter') {
+      handleEditTodo()
+    }
+  }
+
+  // Trigger of Edit HTML
+  const handleToggleEdit = () => {
+    setIsEditing(!isEditing)
+  }
+
+  // To get the input
+  const handleInputChange = (e) => {
+    setUpdatedName(e.target.value)
+  }
+
+  // For edit task
+  const handleEditTodo = () => {
+    // console.log('Updated name:', updatedName)
+    if (updatedName.trim() !== '') {
+      const updatedTodo = { ...todos, name: updatedName }
+      updateTodos(updatedTodo)
+    }
+    setIsEditing(false)
+  }
+
+  //Delete task
+  const handleDeleteTodo = () => {
+    // console.log('Deleted todo ID:', todos.id)
+    deleteTodo(todos.id)
+  }
   return (
-    <div className="list-container">
-      <ul>
-        {todos.map((todo) => (
-          <Items
-            key={todo.id}
-            todos={todo}
-            handleDoneToggle={handleDoneToggle}
-            deleteTodo={deleteTodo}
-            updateTodos={updateTodos}
+    <li>
+      {isEditing ? (
+        <div className="edit-container">
+          <input
+            className="edit-input"
+            type="text"
+            value={updatedName}
+            onChange={handleInputChange}
+            onKeyDown={handleKeyDown}
           />
-        ))}
-      </ul>
-    </div>
+          <button className="btn-save" onClick={handleEditTodo}>
+            Save
+          </button>
+        </div>
+      ) : (
+        <div className="normal-container">
+          <label>
+            <input
+              type="checkbox"
+              defaultChecked={todos.done}
+              onChange={() => handleDoneToggle(todos.id)}
+            />
+            <span className={todos.done ? 'completed' : ''}>{todos.name}</span>
+          </label>
+          <div className="btn-container">
+            <button className="btn" onClick={handleToggleEdit}>
+              Edit
+            </button>
+            <button className="btn" onClick={handleDeleteTodo}>
+              Delete
+            </button>
+          </div>
+        </div>
+      )}
+    </li>
   )
 }
