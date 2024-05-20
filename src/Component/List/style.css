@@ -12,7 +12,7 @@ li {
 li:hover {
   background-color: #ddd;
 }
-li:hover:hover.btn {
+li:hover:hover .btn {
   font-size: 14px;
   opacity: 1;
   width: 70px;
@@ -24,10 +24,10 @@ li:hover:hover.btn {
   transition: linear 0.5s;
   margin-right: 6px;
 }
-li:hover:hover.btn:last-child {
+li:hover:hover .btn:last-child {
   margin-right: 0;
 }
-li:hover:hover.btn:hover {
+li:hover:hover .btn:hover {
   background-color: rgb(219, 84, 35);
 }
 li .normal-container {

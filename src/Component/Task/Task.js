@@ -10,6 +10,7 @@ export default function Task() {
     { id: 1, name: 'Example Task', done: true },
   ])
   const [idCounter, setIdCounter] = useState(todos.length + 1)
+  const [filter, setFilter] = useState('All')
 
   // add task into list
   const addTodos = (newTodo) => {
@@ -46,13 +47,21 @@ export default function Task() {
     setTodos(updatedTodos)
   }
 
+  // Filter the todos based on the current filter
+  const filteredTodos = todos.filter((todo) => {
+    if (filter === 'All') return true
+    if (filter === 'Done') return todo.done
+    if (filter === 'To do') return !todo.done
+    return true
+  })
+
   return (
     <div className="task-container">
       <Header addTodos={addTodos} />
-      <FilterButtons todos={todos} />
+      <FilterButtons todos={todos} setFilter={setFilter} />
       <div className="list-container">
         <ul>
-          {todos.map((todo) => (
+          {filteredTodos.map((todo) => (
             <List
               key={todo.id}
               todos={todo}
